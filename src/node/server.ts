@@ -27,14 +27,10 @@ export function createHeaders(
     }
   }
 
-  global.__raw.headers = requestHeaders;
   return headers;
 }
 
-export function createRequest(
-  request: http.IncomingMessage,
-  response: http.ServerResponse
-): NodeRequest {
+export function createRequest(request: http.IncomingMessage): NodeRequest {
   // @ts-ignore
   const orig: string = request.originalUrl ?? request.url;
   let url: URL;
@@ -62,8 +58,6 @@ export function createRequest(
     init.body = request;
   }
 
-  global.__raw.request = request;
-  global.__raw.response = response;
   return new NodeRequest(url.href, init);
 }
 
