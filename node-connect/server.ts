@@ -1,4 +1,4 @@
-import type * as http from "node:http";
+import type * as http from "http";
 import type { RequestInit as NodeRequestInit, Response as NodeResponse } from "@tknf/node-globals";
 import {
   AbortController,

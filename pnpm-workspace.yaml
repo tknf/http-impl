@@ -6,3 +6,5 @@ packages:
   - "node-connect"
   - "node-express"
   - "vercel"
+
+  - "examples"

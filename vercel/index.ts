@@ -1,3 +1,5 @@
+import "./globals";
+
 export {
   createFileUploadHandler,
   NodeOnDiskFile,
@@ -18,8 +20,7 @@ export {
   createReadableStreamFromReadable,
   readableStreamToString,
   writeAsyncIterableToWritable,
-  writeReadableStreamToWritable,
-  installGlobals
+  writeReadableStreamToWritable
 } from "@tknf/node-globals";
 
 export {

@@ -1,7 +1,7 @@
 {
   "name": "@tknf/http-impl",
   "description": "Implementations of the web standard HTTP Request and Response",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "author": "mast1ff <https://github.com/mast1ff>",
   "repository": {
     "type": "git",
@@ -26,71 +26,72 @@
     "netlify"
   ],
   "main": "./node/dist/index.js",
-  "module": "./node/dist/index.esm.js",
-  "types": "./node/dist/index.d.ts",
+  "module": "./node/dist/index.mjs",
+  "types": "./node/index.d.ts",
   "exports": {
     "./package.json": "./package.json",
     ".": {
-      "types": "./node/dist/index.d.ts",
+      "types": "./node/index.d.ts",
       "import": "./node/dist/index.mjs",
-      "module": "./node/dist/index.esm.js",
       "require": "./node/dist/index.js"
     },
     "./node": {
-      "types": "./node/dist/index.d.ts",
+      "types": "./node/index.d.ts",
       "import": "./node/dist/index.mjs",
-      "module": "./node/dist/index.esm.js",
       "require": "./node/dist/index.js"
     },
     "./node-connect": {
-      "types": "./node-connect/dist/index.d.ts",
+      "types": "./node-connect/index.d.ts",
       "import": "./node-connect/dist/index.mjs",
-      "module": "./node-connect/dist/index.esm.js",
       "require": "./node-connect/dist/index.js"
     },
     "./node-express": {
-      "types": "./node-express/dist/index.d.ts",
+      "types": "./node-express/index.d.ts",
       "import": "./node-express/dist/index.mjs",
-      "module": "./node-express/dist/index.esm.js",
       "require": "./node-express/dist/index.js"
     },
     "./cloudflare": {
-      "types": "./cloudflare/dist/index.d.ts",
+      "types": "./cloudflare/index.d.ts",
       "import": "./cloudflare/dist/index.mjs",
-      "module": "./cloudflare/dist/index.esm.js",
       "require": "./cloudflare/dist/index.js"
     },
     "./netlify": {
-      "types": "./netlify/dist/index.d.ts",
+      "types": "./netlify/index.d.ts",
       "import": "./netlify/dist/index.mjs",
-      "module": "./netlify/dist/index.esm.js",
       "require": "./netlify/dist/index.js"
     },
     "./vercel": {
-      "types": "./vercel/dist/index.d.ts",
+      "types": "./vercel/index.d.ts",
       "import": "./vercel/dist/index.mjs",
-      "module": "./vercel/dist/index.esm.js",
       "require": "./vercel/dist/index.js"
     },
     "./_runtime": {
-      "types": "./_runtime/dist/index.d.ts",
+      "types": "./_runtime/index.d.ts",
       "import": "./_runtime/dist/index.mjs",
-      "module": "./_runtime/dist/index.esm.js",
       "require": "./_runtime/dist/index.js"
     }
   },
   "files": [
     "node/dist/**/*.{js,d.ts,mjs}",
-    "node-connect/dist/**/*.{js,d.ts,mjs}",
-    "node-express/dist/**/*.{js,d.ts,mjs}",
-    "cloudflare/dist/**/*.{js,d.ts,mjs}",
-    "netlify/dist/**/*.{js,d.ts,mjs}",
-    "vercel/dist/**/*.{js,d.ts,mjs}",
-    "_runtime/dist/**/*.{js,d.ts,mjs}",
+    "node/index.d.ts",
     "node/package.json",
+    "node-connect/dist/**/*.{js,d.ts,mjs}",
+    "node-connect/index.d.ts",
+    "node-connect/package.json",
+    "node-express/dist/**/*.{js,d.ts,mjs}",
+    "node-express/index.d.ts",
+    "node-express/package.json",
+    "cloudflare/dist/**/*.{js,d.ts,mjs}",
+    "cloudflare/index.d.ts",
     "cloudflare/package.json",
+    "netlify/dist/**/*.{js,d.ts,mjs}",
+    "netlify/index.d.ts",
     "netlify/package.json",
+    "vercel/dist/**/*.{js,d.ts,mjs}",
+    "vercel/index.d.ts",
     "vercel/package.json",
+    "_runtime/dist/**/*.{js,d.ts,mjs}",
+    "_runtime/index.d.ts",
     "_runtime/package.json"
   ],
   "engines": {
@@ -100,6 +101,7 @@
     "clean": "pnpm -r run clean",
     "watch": "pnpm -r run watch",
     "build": "pnpm -r run build",
+    "test": "jest",
     "prepublishOnly": "pnpm clean && pnpm build"
   },
   "dependencies": {
@@ -110,16 +112,29 @@
     "stream-slice": "^0.1.2"
   },
   "devDependencies": {
+    "@netlify/functions": "^1.2.0",
+    "@swc/core": "^1.3.4",
+    "@swc/jest": "^0.2.23",
     "@tknf/eslint-config-typescript": "^1.0.8",
     "@tknf/http-impl": "workspace:*",
     "@tknf/prettier-config": "^1.0.8",
+    "@types/connect": "^3.4.35",
     "@types/cookie": "^0.5.1",
     "@types/cookie-signature": "^1.0.4",
+    "@types/express": "^4.17.14",
+    "@types/jest": "^29.1.1",
     "@types/node": "^18.6.4",
-    "bunchee": "2.1.1",
+    "@types/supertest": "^2.0.12",
+    "@vercel/node": "^2.5.21",
+    "connect": "^3.7.0",
+    "cross-env": "^7.0.3",
+    "esbuild": "^0.15.10",
     "eslint": "^8.24.0",
+    "express": "^4.18.1",
+    "jest": "^29.1.2",
     "prettier": "^2.7.1",
     "rimraf": "^3.0.2",
+    "supertest": "^6.2.4",
     "typescript": "^4.7.4"
   },
   "prettier": "@tknf/prettier-config",

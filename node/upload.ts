@@ -1,11 +1,11 @@
-import { randomBytes } from "node:crypto";
-import { createReadStream, createWriteStream, statSync } from "node:fs";
-import { rm, mkdir, stat as statAsync } from "node:fs/promises";
-import { tmpdir } from "node:os";
-import { basename, dirname, extname, resolve as resolvePath } from "node:path";
-import type { Readable } from "node:stream";
-import { finished } from "node:stream";
-import { promisify } from "node:util";
+import { randomBytes } from "crypto";
+import { createReadStream, createWriteStream, statSync } from "fs";
+import { rm, mkdir, stat as statAsync } from "fs/promises";
+import { tmpdir } from "os";
+import { basename, dirname, extname, resolve as resolvePath } from "path";
+import type { Readable } from "stream";
+import { finished } from "stream";
+import { promisify } from "util";
 // @ts-expect-error
 import * as streamSlice from "stream-slice";
 import { createReadableStreamFromReadable, readableStreamToString } from "@tknf/node-globals";

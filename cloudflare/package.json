@@ -1,16 +1,14 @@
 {
   "main": "./dist/index.js",
-  "module": "./dist/index.esm.js",
-  "types": "./dist/index.d.ts",
-  "exports": "./dist/index.mjs",
+  "types": "./index.d.ts",
+  "exports": "./dist/index.js",
   "private": true,
   "scripts": {
-    "watch": "bunchee index.ts -w",
-    "build": "bunchee index.ts",
+    "watch": "node scripts/watch",
+    "build": "node scripts/build",
     "types:check": "tsc --noEmit",
     "clean": "rimraf dist"
   },
-  "dependencies": {},
   "devDependencies": {
     "@cloudflare/workers-types": "^3.16.0"
   },
