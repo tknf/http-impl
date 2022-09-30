@@ -7,7 +7,7 @@
     "start": "node index.js"
   },
   "dependencies": {
-    "@tknf/http-impl": "latest",
+    "@tknf/http-impl": "^1.0.2",
     "connect": "^3.7.0"
   }
 }
