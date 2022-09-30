@@ -13,5 +13,8 @@
   "dependencies": {},
   "devDependencies": {
     "@cloudflare/workers-types": "^3.16.0"
+  },
+  "peerDependencies": {
+    "@tknf/http-impl": "*"
   }
 }

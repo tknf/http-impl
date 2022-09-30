@@ -36,6 +36,18 @@
       "module": "./node/dist/index.esm.js",
       "require": "./node/dist/index.js"
     },
+    "./node-connect": {
+      "types": "./node-connect/dist/index.d.ts",
+      "import": "./node-connect/dist/index.mjs",
+      "module": "./node-connect/dist/index.esm.js",
+      "require": "./node-connect/dist/index.js"
+    },
+    "./node-express": {
+      "types": "./node-express/dist/index.d.ts",
+      "import": "./node-express/dist/index.mjs",
+      "module": "./node-express/dist/index.esm.js",
+      "require": "./node-express/dist/index.js"
+    },
     "./cloudflare": {
       "types": "./cloudflare/dist/index.d.ts",
       "import": "./cloudflare/dist/index.mjs",
@@ -63,6 +75,8 @@
   },
   "files": [
     "node/dist/**/*.{js,d.ts,mjs}",
+    "node-connect/dist/**/*.{js,d.ts,mjs}",
+    "node-express/dist/**/*.{js,d.ts,mjs}",
     "cloudflare/dist/**/*.{js,d.ts,mjs}",
     "netlify/dist/**/*.{js,d.ts,mjs}",
     "vercel/dist/**/*.{js,d.ts,mjs}",
@@ -83,15 +97,14 @@
     "prepublishOnly": "pnpm clean && pnpm build"
   },
   "dependencies": {
-    "@tknf/node-globals": "^0.2.0",
-    "source-map-support": "^0.5.21"
+    "@tknf/node-globals": "^0.2.0"
   },
   "devDependencies": {
     "@tknf/eslint-config-typescript": "^1.0.8",
+    "@tknf/http-impl": "workspace:*",
     "@tknf/prettier-config": "^1.0.8",
     "@types/node": "^18.6.4",
-    "@types/source-map-support": "^0.5.6",
-    "bunchee": "^2.1.3",
+    "bunchee": "2.1.1",
     "eslint": "^8.24.0",
     "prettier": "^2.7.1",
     "rimraf": "^3.0.2",

@@ -1,6 +1,4 @@
-import type * as http from "http";
-import { PassThrough } from "stream";
-import type * as express from "express";
+import type * as http from "node:http";
 import type { RequestInit as NodeRequestInit, Response as NodeResponse } from "@tknf/node-globals";
 import {
   AbortController,
@@ -27,17 +25,9 @@ export function createHeaders(requestHeaders: http.IncomingMessage["headers"]): 
   return headers;
 }
 
-export function createRequest(
-  request: http.IncomingMessage | express.Request,
-  response: http.ServerResponse | express.Response
-): NodeRequest {
-  let origin: string;
-  if (isExpressRequest(request)) {
-    origin = `${request.protocol}://${request.get("host")}`;
-  } else {
-    // @ts-ignore
-    origin = request.originalUrl ?? request.url;
-  }
+export function createRequest(request: http.IncomingMessage, response: http.ServerResponse): NodeRequest {
+  // @ts-ignore
+  const origin = request.originalUrl ?? request.url;
   let url: URL;
   if (origin && !origin.startsWith("/")) {
     url = new URL(origin);
@@ -56,27 +46,15 @@ export function createRequest(
   };
 
   if (request.method !== "GET" && request.method !== "HEAD") {
-    if (isExpressRequest(request)) {
-      init.body = request.pipe(new PassThrough({ highWaterMark: 16384 }));
-    } else {
-      init.body = request;
-    }
+    init.body = request;
   }
 
   return new NodeRequest(url.href, init);
 }
 
-export async function sendResponse(
-  response: http.ServerResponse | express.Response,
-  nodeResponse: NodeResponse
-): Promise<void> {
-  if (isExpressResponse(response)) {
-    response.statusMessage = nodeResponse.statusText;
-    response.status(nodeResponse.status);
-  } else {
-    response.statusMessage = nodeResponse.statusText;
-    response.statusCode = nodeResponse.status;
-  }
+export async function sendResponse(response: http.ServerResponse, nodeResponse: NodeResponse): Promise<void> {
+  response.statusMessage = nodeResponse.statusText;
+  response.statusCode = nodeResponse.status;
 
   for (const [key, values] of Object.entries(nodeResponse.headers.raw())) {
     for (const value of values) {
@@ -89,17 +67,4 @@ export async function sendResponse(
   } else {
     response.end();
   }
-}
-
-function isExpressRequest(req: any): req is express.Request {
-  return req != null && typeof req.get === "function" && typeof req.app === "object";
-}
-
-function isExpressResponse(res: any): res is express.Response {
-  return (
-    res != null &&
-    typeof res.json === "function" &&
-    typeof res.redirect === "function" &&
-    typeof res.status === "function"
-  );
 }

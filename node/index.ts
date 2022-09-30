@@ -1,7 +1,3 @@
-import sourceMapSupport from "source-map-support";
-
-sourceMapSupport.install();
-
 export { createCookie } from "./cookies";
 export {
   createCookieSessionStorage,
@@ -10,7 +6,6 @@ export {
   createMemorySessionStorage
 } from "./sessions";
 export { createFileUploadHandler, NodeOnDiskFile } from "./upload";
-export { createHeaders, createRequest, sendResponse } from "./server";
 
 export type { HeadersInit, RequestInfo, RequestInit, ResponseInit } from "@tknf/node-globals";
 export {

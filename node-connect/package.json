@@ -10,9 +10,7 @@
     "types:check": "tsc --noEmit",
     "clean": "rimraf dist"
   },
-  "devDependencies": {
-    "@vercel/node": "^2.4.2"
-  },
+  "devDependencies": {},
   "peerDependencies": {
     "@tknf/http-impl": "*"
   }

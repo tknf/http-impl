@@ -1,7 +1,8 @@
 packages:
   - "_runtime"
   - "cloudflare"
-  - "deno"
   - "netlify"
   - "node"
+  - "node-connect"
+  - "node-express"
   - "vercel"

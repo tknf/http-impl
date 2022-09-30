@@ -12,5 +12,8 @@
   },
   "devDependencies": {
     "@netlify/functions": "^1.0.0"
+  },
+  "peerDependencies": {
+    "@tknf/http-impl": "*"
   }
 }

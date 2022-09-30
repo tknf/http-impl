@@ -2,8 +2,7 @@
   "extends": "../tsconfig.json",
   "compilerOptions": {
     "rootDir": "..",
-    "outDir": "./dist",
-    "types": ["@cloudflare/workers-types"]
+    "outDir": "./dist"
   },
   "include": ["./**/*.ts"]
 }
