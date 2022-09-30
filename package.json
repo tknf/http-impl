@@ -1,7 +1,7 @@
 {
   "name": "@tknf/http-impl",
   "description": "Implementations of the web standard HTTP Request and Response",
-  "version": "0.2.1",
+  "version": "1.0.0",
   "author": "mast1ff <https://github.com/mast1ff>",
   "repository": {
     "type": "git",
