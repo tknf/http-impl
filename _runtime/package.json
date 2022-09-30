@@ -1,0 +1,20 @@
+{
+  "main": "./dist/index.js",
+  "module": "./dist/index.esm.js",
+  "types": "./dist/index.d.ts",
+  "exports": "./dist/index.mjs",
+  "private": true,
+  "scripts": {
+    "watch": "bunchee index.ts -w",
+    "build": "bunchee index.ts",
+    "types:check": "tsc --noEmit",
+    "clean": "rimraf dist"
+  },
+  "dependencies": {
+    "@web3-storage/multipart-parser": "^1.0.0",
+    "cookie": "^0.5.0"
+  },
+  "devDependencies": {
+    "@types/cookie": "^0.5.1"
+  }
+}

@@ -1,13 +1,32 @@
 {
-  "exclude": ["dist"],
   "compilerOptions": {
-    "lib": ["ES2020", "DOM", "DOM.Iterable"],
-    "target": "ES2020",
-
-    "moduleResolution": "node",
     "allowSyntheticDefaultImports": true,
-    "strict": true,
     "declaration": true,
-    "emitDeclarationOnly": true
+    "downlevelIteration": true,
+    "esModuleInterop": true,
+    "lib": ["ES2020", "DOM"],
+    "module": "ES2020",
+    "moduleResolution": "node",
+    "outDir": "./dist",
+    "rootDir": "./",
+    "strict": true,
+    "skipLibCheck": true,
+    "target": "ES2020",
+    "baseUrl": ".",
+    "paths": {
+      "@tknf/http-impl/_runtime": ["./_runtime/index.ts"],
+      "@tknf/http-impl/cloudflare": ["./cloudflare/index.ts"],
+      "@tknf/http-impl/deno": ["./deno/index.ts"],
+      "@tknf/http-impl/netlify": ["./netlify/index.ts"],
+      "@tknf/http-impl/node": ["./node/index.ts"],
+      "@tknf/http-impl/vercel": ["./vercel/index.ts"]
+    },
+    "incremental": true
+  },
+  "exclude": ["./**/dist"],
+  "watchOptions": {
+    "watchFile": "useFsEvents",
+    "watchDirectory": "useFsEvents",
+    "fallbackPolling": "dynamicPriority"
   }
 }

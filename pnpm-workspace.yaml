@@ -1,0 +1,7 @@
+packages:
+  - "_runtime"
+  - "cloudflare"
+  - "deno"
+  - "netlify"
+  - "node"
+  - "vercel"

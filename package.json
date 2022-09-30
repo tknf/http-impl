@@ -16,43 +16,99 @@
   },
   "homepage": "https://github.com/tknf/http-impl/tree/main/#readme",
   "license": "MIT",
-  "main": "./dist/node/index.js",
-  "types": "./dist/node/index.d.ts",
+  "keywords": [
+    "web",
+    "http",
+    "node",
+    "worker",
+    "cloudflare",
+    "vercel",
+    "netlify"
+  ],
+  "main": "./node/dist/index.js",
+  "module": "./node/dist/index.esm.js",
+  "types": "./node/dist/index.d.ts",
+  "exports": {
+    "./package.json": "./package.json",
+    ".": {
+      "types": "./node/dist/index.d.ts",
+      "import": "./node/dist/index.mjs",
+      "module": "./node/dist/index.esm.js",
+      "require": "./node/dist/index.js"
+    },
+    "./cloudflare": {
+      "types": "./cloudflare/dist/index.d.ts",
+      "import": "./cloudflare/dist/index.mjs",
+      "module": "./cloudflare/dist/index.esm.js",
+      "require": "./cloudflare/dist/index.js"
+    },
+    "./netlify": {
+      "types": "./netlify/dist/index.d.ts",
+      "import": "./netlify/dist/index.mjs",
+      "module": "./netlify/dist/index.esm.js",
+      "require": "./netlify/dist/index.js"
+    },
+    "./vercel": {
+      "types": "./vercel/dist/index.d.ts",
+      "import": "./vercel/dist/index.mjs",
+      "module": "./vercel/dist/index.esm.js",
+      "require": "./vercel/dist/index.js"
+    },
+    "./_runtime": {
+      "types": "./_runtime/dist/index.d.ts",
+      "import": "./_runtime/dist/index.mjs",
+      "module": "./_runtime/dist/index.esm.js",
+      "require": "./_runtime/dist/index.js"
+    }
+  },
   "files": [
-    "dist",
-    "cloudflare.js",
-    "cloudflare.d.ts",
-    "deno.ts",
-    "netlify.js",
-    "netlify.d.ts",
-    "node.js",
-    "node.d.ts",
-    "vercel.js",
-    "vercel.d.ts"
+    "node/dist/**/*.{js,d.ts,mjs}",
+    "cloudflare/dist/**/*.{js,d.ts,mjs}",
+    "netlify/dist/**/*.{js,d.ts,mjs}",
+    "vercel/dist/**/*.{js,d.ts,mjs}",
+    "_runtime/dist/**/*.{js,d.ts,mjs}",
+    "node/package.json",
+    "cloudflare/package.json",
+    "netlify/package.json",
+    "vercel/package.json",
+    "_runtime/package.json"
   ],
   "engines": {
     "node": ">=14.0.0"
   },
   "scripts": {
-    "build": "rollup -c",
-    "prepublishOnly": "npm run build"
+    "clean": "pnpm -r run clean",
+    "watch": "pnpm -r run watch",
+    "build": "pnpm -r run build",
+    "prepublishOnly": "pnpm clean && pnpm build"
   },
   "dependencies": {
     "@tknf/node-globals": "^0.2.0",
-    "cookie-signature": "^1.2.0"
+    "source-map-support": "^0.5.21"
   },
   "devDependencies": {
-    "@netlify/functions": "^1.0.0",
-    "@rollup/plugin-babel": "^5.3.1",
-    "@rollup/plugin-node-resolve": "^13.3.0",
-    "@rollup/plugin-typescript": "^8.3.4",
-    "@types/cookie-signature": "^1.0.4",
+    "@tknf/eslint-config-typescript": "^1.0.8",
+    "@tknf/prettier-config": "^1.0.8",
     "@types/node": "^18.6.4",
-    "@vercel/node": "^2.4.2",
-    "@vercel/node-bridge": "^3.0.0",
-    "rollup": "^2.77.2",
-    "rollup-plugin-copy": "^3.4.0",
-    "tslib": "^2.4.0",
+    "@types/source-map-support": "^0.5.6",
+    "bunchee": "^2.1.3",
+    "eslint": "^8.24.0",
+    "prettier": "^2.7.1",
+    "rimraf": "^3.0.2",
     "typescript": "^4.7.4"
+  },
+  "prettier": "@tknf/prettier-config",
+  "eslintConfig": {
+    "extends": "@tknf/eslint-config-typescript",
+    "rules": {
+      "no-console": "off",
+      "no-dupe-class-members": "off",
+      "no-param-reassign": "off",
+      "no-plusplus": "off",
+      "no-undef": "off",
+      "import/first": "off",
+      "@typescript-eslint/ban-ts-comment": "off",
+      "@typescript-eslint/explicit-member-accessibility": "off"
+    }
   }
 }
