@@ -3,7 +3,8 @@
   "compilerOptions": {
     "rootDir": "..",
     "outDir": "./dist",
-    "types": ["@cloudflare/workers-types"]
+    "types": ["@cloudflare/workers-types"],
+    "skipLibCheck": true
   },
   "include": ["./**/*.ts"]
 }

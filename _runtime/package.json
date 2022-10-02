@@ -1,11 +1,11 @@
 {
   "main": "./dist/index.js",
-  "types": "./index.d.ts",
-  "exports": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "module": "./dist/index.mjs",
   "private": true,
   "scripts": {
-    "watch": "node scripts/watch",
-    "build": "node scripts/build",
+    "watch": "rollup -c -w",
+    "build": "rollup -c",
     "types:check": "tsc --noEmit",
     "clean": "rimraf dist"
   }
