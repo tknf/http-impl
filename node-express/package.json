@@ -1,6 +1,6 @@
 {
   "main": "./dist/index.js",
-  "types": "./dist/netlify/index.d.ts",
+  "types": "./dist/index.d.ts",
   "module": "./dist/index.mjs",
   "private": true,
   "scripts": {
