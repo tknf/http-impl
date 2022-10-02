@@ -1,4 +1,5 @@
 const path = require("path");
+const { Module } = require("module");
 // const { builtinModules } = require("module");
 const nodeResolve = require("@rollup/plugin-node-resolve").default;
 const commonjs = require("@rollup/plugin-commonjs");
@@ -92,11 +93,30 @@ module.exports.esmConfig = ({ root }) => {
 };
 
 /**
+ * @param { string } cwd
+ */
+function resolveTypescript(cwd) {
+  let ts;
+  const m = new Module("", undefined);
+  m.paths = Module._nodeModulePaths(cwd);
+  try {
+    ts = m.require("typescript");
+  } catch (_) {
+    console.error(_);
+    process.exit(1);
+  }
+  return ts;
+}
+
+/**
  * @param { BuildConfigOptions } options
  * @returns { import("rollup").RollupOptions }
  */
 module.exports.dtsConfig = ({ root }) => {
-  const tsconfig = require(path.resolve(root, "./tsconfig.json"));
+  const ts = resolveTypescript(root);
+  const tsconfigPath = path.resolve(root, "./tsconfig.json");
+  const tsconfigJson = ts.readConfigFile(tsconfigPath, ts.sys.readFile).config;
+  const compilerOptions = ts.parseJsonConfigFileContent(tsconfigJson, ts.sys, "./").options;
   return {
     external: getExternals(),
     treeshake: {
@@ -109,7 +129,7 @@ module.exports.dtsConfig = ({ root }) => {
     plugins: [
       require("rollup-plugin-dts").default({
         compilerOptions: {
-          ...tsconfig.compilerOptions,
+          ...compilerOptions,
           declaration: true,
           noEmit: false,
           noEmitOnError: true,

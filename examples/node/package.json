@@ -4,7 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js"
+    "start.cjs": "nodemon index.js",
+    "start.mjs": "nodemon index.mjs",
+    "start.ts": "nodemon --exec 'node --loader ts-node/esm' index.ts"
   },
   "dependencies": {
     "@tknf/http-impl": "*",
@@ -12,5 +14,9 @@
   },
   "engines": {
     "node": ">=14"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.20",
+    "ts-node": "^10.9.1"
   }
 }

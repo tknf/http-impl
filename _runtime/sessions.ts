@@ -88,8 +88,16 @@ export abstract class SessionStorageContract {
 }
 
 export class SessionStorage extends SessionStorageContract {
-  constructor(private cookie: Cookie, private strategy: SessionIdStorageStrategy) {
+  private cookie: Cookie;
+  private strategy: SessionIdStorageStrategy;
+
+  constructor(cookie: Cookie, strategy: SessionIdStorageStrategy) {
     super();
+    this.cookie = cookie;
+    this.strategy = strategy;
+    this.getSession = this.getSession.bind(this);
+    this.commitSession = this.commitSession.bind(this);
+    this.destroySession = this.destroySession.bind(this);
   }
 
   /**
@@ -189,8 +197,13 @@ export type CreateCookieSessionStorageFunction = (options?: {
 }) => CookieSessionStorage;
 
 class CookieSessionStorage extends SessionStorageContract {
-  constructor(private cookie: Cookie) {
+  private cookie: Cookie;
+  constructor(cookie: Cookie) {
     super();
+    this.cookie = cookie;
+    this.getSession = this.getSession.bind(this);
+    this.commitSession = this.commitSession.bind(this);
+    this.destroySession = this.destroySession.bind(this);
   }
 
   public async getSession(

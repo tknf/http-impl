@@ -22,9 +22,10 @@
     "paths": {
       "@tknf/http-impl/_runtime": ["./_runtime/index.ts"],
       "@tknf/http-impl/cloudflare": ["./cloudflare/index.ts"],
-      "@tknf/http-impl/deno": ["./deno/index.ts"],
-      "@tknf/http-impl/netlify": ["./netlify/index.ts"],
       "@tknf/http-impl/node": ["./node/index.ts"],
+      "@tknf/http-impl/node-connect": ["./node-connect/index.ts"],
+      "@tknf/http-impl/node-express": ["./node-express/index.ts"],
+      "@tknf/http-impl/netlify": ["./netlify/index.ts"],
       "@tknf/http-impl/vercel": ["./vercel/index.ts"]
     }
   },
